@@ -32,7 +32,7 @@ export default function Home() {
       if (err instanceof Error && err.message.includes("exists")) {
         setError("This alias already exists in DB");
       } else {
-        setError("unknown error");
+        setError("error");
       }
     }
   };
