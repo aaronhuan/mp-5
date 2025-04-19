@@ -24,12 +24,13 @@ export default function Home() {
       setError("Invalid URL");
       return;
     }
+
     try {
       await shortenURL(url, alias); //shorten it
       setShortUrl(`https://mp-5-eosin-zeta.vercel.app/${alias}`); //set it
     } catch (err: unknown) {
         setError("alias already exists");
-      }
+    }
   };
 
   return (
@@ -86,6 +87,7 @@ export default function Home() {
             value={alias}
             onChange={(e) => setAlias(e.target.value)}
             sx={{width: '80%'}}
+            required
           />
           </Box>
 
