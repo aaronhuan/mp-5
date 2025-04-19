@@ -24,12 +24,12 @@ export default function Home() {
       setError("Invalid URL");
       return;
     }
-
     try {
       await shortenURL(url, alias); //shorten it
       setShortUrl(`https://mp-5-eosin-zeta.vercel.app/${alias}`); //set it
     } catch (err: unknown) {
-      if (err instanceof Error && err.message.includes("exists")) {
+      if (err instanceof Error) {
+        if (err.message.includes("already exists"))
         setError("This alias already exists in DB");
       } else {
         setError("error");
