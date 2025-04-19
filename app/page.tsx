@@ -27,7 +27,7 @@ export default function Home() {
 
     try {
       await shortenURL(url, alias); //shorten it
-      setShortUrl(`http://localhost:3000/${alias}`); //set it
+      setShortUrl(`https://mp-5-eosin-zeta.vercel.app/${alias}`); //set it
     } catch (err: unknown) {
       if (err instanceof Error && err.message.includes("exists")) {
         setError("This alias already exists in DB");
