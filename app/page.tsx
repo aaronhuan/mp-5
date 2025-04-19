@@ -15,11 +15,11 @@ export default function Home() {
   const [error, setError] = useState<string | null>(null);
   const [shortUrl, setShortUrl] = useState<string | null>(null);
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  let whenSubmitted = async (e: React.FormEvent) => {
+    e.preventDefault();//https://stackoverflow.com/questions/19454310/stop-form-refreshing-page-on-submit
     setError(null);
     setShortUrl(null);
-
+    //reset everything
     if (!(await valid(url))) {
       setError("Invalid URL");
       return;
@@ -28,7 +28,7 @@ export default function Home() {
     try {
       await shortenURL(url, alias); //shorten it
       setShortUrl(`https://mp-5-eosin-zeta.vercel.app/${alias}`); //set it
-    } catch (err: unknown) {
+    } catch (err) {
         setError("alias already exists");
     }
   };
@@ -52,7 +52,7 @@ export default function Home() {
         </Typography>
         <Box
           component="form"
-          onSubmit={handleSubmit}
+          onSubmit={whenSubmitted} //call the helper function
           sx={{
             backgroundColor: 'white',
             width: "70%",
@@ -73,7 +73,7 @@ export default function Home() {
             label="URL"
             variant="outlined"
             value={url}
-            onChange={(e) => setUrl(e.target.value)} 
+            onChange={(e) => setUrl(e.target.value)}  //https://developer.mozilla.org/en-US/docs/Web/API/Element/input_event get the value using event listener
             sx={{width: '80%'}}
           />
           </Box>
@@ -95,17 +95,9 @@ export default function Home() {
             Shorten URL
           </Button>
 
-          {error && (
-            <Typography color="error" variant="body1">
-              {error}
-            </Typography>
-          )}
+          {error && (<Typography color="error" variant="body1">{error}</Typography>)}
 
-          {shortUrl && (
-            <Typography variant="body1">
-              <a href={shortUrl}>{shortUrl}</a>
-            </Typography>
-          )}
+          {shortUrl && (<Typography variant="body1"><a href={shortUrl}>{shortUrl}</a></Typography>)}
         </Box>
       </Box>
     </>

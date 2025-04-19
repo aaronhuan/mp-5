@@ -5,6 +5,6 @@ import { url } from "@/type";
 
 export default async function getshortenedURL(alias: string): Promise<url|null>{
     const collection = await getCollection(URLS_COLLECTION);
-    const result = await collection.findOne<url>({alias})
+    const result = await collection.findOne<url>({alias})//null or the url
     return result;
 }

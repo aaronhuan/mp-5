@@ -8,7 +8,4 @@ export default async function redirectedP({ params }: { params: Promise<{ alias:
     redirect("/")
   }
   redirect(data.input_URL); 
-  return(
-    <p>loading...</p>
-  );
 }
