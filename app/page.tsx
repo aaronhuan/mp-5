@@ -28,7 +28,7 @@ export default function Home() {
       await shortenURL(url, alias); //shorten it
       setShortUrl(`https://mp-5-eosin-zeta.vercel.app/${alias}`); //set it
     } catch (err: unknown) {
-        setError("error");
+        setError("alias already exists");
       }
   };
 
