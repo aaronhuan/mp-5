@@ -11,7 +11,6 @@ export default async  function shortenURL(input_URL: string, alias:string ): Pro
   if (exist){
     throw new Error(alias + " already exists")
   }
-
   const collection = await getCollection(URLS_COLLECTION);
   const result = await collection.insertOne(addedEntry);
   if (!result.acknowledged){
